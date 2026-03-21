@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
-import { Plus, Trash2, X } from "lucide-react";
+import { Plus, Trash2, X, Copy, Check } from "lucide-react";
+
+const SITE_URL = "https://wedding-invitation-app-nine.vercel.app";
 
 interface Guest {
   id: string;
@@ -43,6 +45,13 @@ export default function AdminPage() {
   const [newGuest, setNewGuest] = useState({ name: "", slug: "" });
   const [addingGuest, setAddingGuest] = useState(false);
   const [guestError, setGuestError] = useState("");
+  const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
+
+  const copyGuestUrl = (slug: string) => {
+    navigator.clipboard.writeText(`${SITE_URL}/?to=${slug}`);
+    setCopiedSlug(slug);
+    setTimeout(() => setCopiedSlug(null), 2000);
+  };
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -346,7 +355,7 @@ export default function AdminPage() {
                 <p className="text-[10px] text-text-muted font-sans mb-4">
                   URL undangan:{" "}
                   <span className="text-gold font-mono">
-                    /?to={newGuest.slug || "..."}
+                    {SITE_URL}/?to={newGuest.slug || "..."}
                   </span>
                 </p>
 
@@ -394,8 +403,23 @@ export default function AdminPage() {
                         <td className="py-3 pr-4 text-gold font-mono text-xs">
                           {g.slug}
                         </td>
-                        <td className="py-3 pr-4 text-text-muted text-xs font-mono">
-                          /?to={g.slug}
+                        <td className="py-3 pr-4">
+                          <div className="flex items-center gap-2">
+                            <span className="text-text-muted text-xs font-mono truncate max-w-[280px]">
+                              {SITE_URL}/?to={g.slug}
+                            </span>
+                            <button
+                              onClick={() => copyGuestUrl(g.slug)}
+                              className="text-text-muted/40 hover:text-gold transition-colors flex-shrink-0"
+                              title="Copy URL"
+                            >
+                              {copiedSlug === g.slug ? (
+                                <Check size={12} className="text-green-400" />
+                              ) : (
+                                <Copy size={12} />
+                              )}
+                            </button>
+                          </div>
                         </td>
                         <td className="py-3">
                           <button
