@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { motion, AnimatePresence } from "framer-motion";
-import Ornament from "./Ornament";
 
 interface Wish {
   id: number;
@@ -46,11 +45,19 @@ export default function WishesList() {
   return (
     <div className="py-16 bg-primary px-6">
       <div className="max-w-2xl mx-auto">
-        <Ornament light />
+
+        {/* Visual separator from RSVP above */}
+        <div className="flex items-center gap-4 mb-10">
+          <div className="flex-1 h-[0.5px] bg-gold/20" />
+          <span className="text-[9px] text-gold/60 tracking-[0.4em] uppercase font-sans">
+            Doa &amp; Ucapan
+          </span>
+          <div className="flex-1 h-[0.5px] bg-gold/20" />
+        </div>
 
         <h3 className="text-center text-xl font-serif text-text-light mb-8 font-light">
-          Doa & Ucapan{" "}
-          <span className="text-text-muted text-sm">({wishes.length})</span>
+          Ucapan &amp; Doa{" "}
+          <span className="text-text-muted/60 text-sm">({wishes.length})</span>
         </h3>
 
         <div className="space-y-3 max-h-[450px] overflow-y-auto pr-2 wishes-scroll">
@@ -64,14 +71,14 @@ export default function WishesList() {
               >
                 <div className="flex items-center gap-3 mb-2">
                   {/* Avatar */}
-                  <div className="w-8 h-8 bg-gold/10 flex items-center justify-center text-gold text-xs font-serif">
+                  <div className="w-8 h-8 bg-gold/15 border border-gold/20 flex items-center justify-center text-gold text-xs font-serif flex-shrink-0">
                     {wish.name.charAt(0).toUpperCase()}
                   </div>
                   <div>
                     <h4 className="font-sans font-semibold text-text-light text-sm">
                       {wish.name}
                     </h4>
-                    <p className="text-[10px] text-text-muted/50 font-sans">
+                    <p className="text-[10px] text-text-muted/60 font-sans">
                       {new Date(wish.created_at).toLocaleDateString("id-ID", {
                         day: "numeric",
                         month: "short",
@@ -80,7 +87,7 @@ export default function WishesList() {
                     </p>
                   </div>
                 </div>
-                <p className="text-text-muted text-sm font-sans leading-relaxed ml-11">
+                <p className="text-text-light/70 text-sm font-sans leading-relaxed ml-11">
                   {wish.message}
                 </p>
               </motion.div>
@@ -88,7 +95,7 @@ export default function WishesList() {
           </AnimatePresence>
 
           {wishes.length === 0 && (
-            <p className="text-center text-text-muted/40 text-sm font-sans py-8 italic">
+            <p className="text-center text-text-muted/50 text-sm font-sans py-8 italic">
               Belum ada ucapan. Jadilah yang pertama!
             </p>
           )}

@@ -127,7 +127,7 @@ export default async function Home({
               <span className="text-gold italic text-2xl">&</span>{" "}
               Juliet
             </h4>
-            <p className="text-[9px] text-text-muted/40 tracking-[0.4em] uppercase mb-10 font-sans">
+            <p className="text-[9px] text-text-light/45 tracking-[0.4em] uppercase mb-10 font-sans">
               Mengarungi Bahtera Bersama
             </p>
 
@@ -141,7 +141,7 @@ export default async function Home({
             </div>
 
             {/* Thank You */}
-            <p className="text-text-muted/30 text-sm font-serif italic mb-10">
+            <p className="text-text-light/50 text-sm font-serif italic mb-10">
               Segala kemuliaan bagi Tuhan atas berkat dan kasih-Nya.
               <br />
               Merupakan sukacita bagi kami apabila Anda berkenan hadir.
@@ -149,10 +149,10 @@ export default async function Home({
 
             {/* Credit */}
             <div className="pt-8 border-t border-border-dark">
-              <p className="text-[8px] text-text-muted/20 uppercase tracking-[0.2em] font-sans">
+              <p className="text-[8px] text-text-muted/40 uppercase tracking-[0.2em] font-sans">
                 Made with ♡ by
               </p>
-              <p className="text-[9px] text-text-muted/30 font-sans font-medium tracking-wider mt-1">
+              <p className="text-[9px] text-text-muted/50 font-sans font-medium tracking-wider mt-1">
                 Carlos Michael Marpaung
               </p>
             </div>

@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, useEffect, RefObject } from "react";
-import { Music, Music2 } from "lucide-react";
+import { Music2, Pause } from "lucide-react";
 
 interface MusicPlayerProps {
   audioRef: RefObject<HTMLAudioElement | null>;
 }
+
+const SONG_TITLE = "Canon in D — Pachelbel";
 
 export default function MusicPlayer({ audioRef }: MusicPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -19,8 +21,6 @@ export default function MusicPlayer({ audioRef }: MusicPlayerProps) {
 
     audio.addEventListener("play", handlePlay);
     audio.addEventListener("pause", handlePause);
-
-    // Check initial state
     setIsPlaying(!audio.paused);
 
     return () => {
@@ -43,13 +43,35 @@ export default function MusicPlayer({ audioRef }: MusicPlayerProps) {
     <button
       onClick={toggleMusic}
       aria-label={isPlaying ? "Pause music" : "Play music"}
-      className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-500 ${
-        isPlaying
-          ? "bg-gold text-primary animate-spin-slow"
-          : "bg-card-dark text-gold border border-border-dark hover:bg-gold hover:text-primary"
-      }`}
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-3 pl-4 pr-3 py-2.5 bg-card-dark border border-border-dark hover:border-gold/50 transition-all duration-300 group shadow-xl"
     >
-      {isPlaying ? <Music2 size={18} /> : <Music size={18} />}
+      {/* Song title — only when playing */}
+      {isPlaying && (
+        <span className="text-[9px] text-gold/80 font-sans tracking-[0.2em] uppercase max-w-[120px] truncate">
+          {SONG_TITLE}
+        </span>
+      )}
+
+      {/* Equalizer bars animation */}
+      {isPlaying && (
+        <div className="flex items-end gap-[3px] h-4">
+          {[1, 2, 3, 4].map((bar) => (
+            <div
+              key={bar}
+              className="w-[3px] bg-gold rounded-sm"
+              style={{
+                height: `${Math.random() * 50 + 30}%`,
+                animation: `pulse-gold ${0.6 + bar * 0.15}s ease-in-out infinite alternate`,
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Icon */}
+      <div className={`w-7 h-7 flex items-center justify-center rounded-full transition-all duration-300 ${isPlaying ? "bg-gold text-primary" : "text-gold"}`}>
+        {isPlaying ? <Pause size={14} fill="currentColor" /> : <Music2 size={15} />}
+      </div>
     </button>
   );
 }

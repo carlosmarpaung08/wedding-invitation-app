@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Ornament from "./Ornament";
+import Particles from "./Particles";
 
 const stories = [
   {
@@ -28,8 +29,9 @@ const stories = [
 
 export default function LoveStory() {
   return (
-    <section className="py-24 bg-primary px-6">
-      <div className="max-w-3xl mx-auto">
+    <section className="relative py-24 bg-primary px-6 overflow-hidden grain">
+      <Particles count={12} light />
+      <div className="relative z-10 max-w-3xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -75,13 +77,13 @@ export default function LoveStory() {
                       : "md:pl-16 md:text-left"
                   }`}
                 >
-                  <span className="text-gold/60 text-xs tracking-[0.3em] font-sans font-medium">
+                  <span className="text-gold/90 text-xs tracking-[0.3em] font-sans font-medium">
                     {story.year}
                   </span>
                   <h3 className="text-xl font-serif text-text-light mt-2 mb-3 font-light">
                     {story.title}
                   </h3>
-                  <p className="text-text-muted/70 text-sm font-sans leading-relaxed">
+                  <p className="text-text-light/65 text-sm font-sans leading-relaxed">
                     {story.desc}
                   </p>
                 </div>
@@ -93,7 +95,7 @@ export default function LoveStory() {
           </div>
         </div>
 
-        <Ornament light className="mt-16" />
+        <Ornament light variant="floral" className="mt-16" />
       </div>
     </section>
   );

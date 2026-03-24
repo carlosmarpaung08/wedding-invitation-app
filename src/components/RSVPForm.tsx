@@ -65,7 +65,7 @@ export default function RSVPForm({ defaultName, guestId }: { defaultName: string
           <h2 className="text-3xl md:text-5xl font-serif text-text-light font-light mb-4">
             Konfirmasi Kehadiran
           </h2>
-          <p className="text-text-muted text-sm font-sans italic">
+          <p className="text-text-light/60 text-sm font-sans italic">
             Berikan doa restu dan konfirmasi kehadiran Anda
           </p>
         </motion.div>
@@ -162,7 +162,7 @@ export default function RSVPForm({ defaultName, guestId }: { defaultName: string
           </button>
 
           {status === "error" && (
-            <p className="text-red-400 text-xs text-center font-sans">
+            <p className="text-red-300 text-xs text-center font-sans">
               Terjadi kesalahan. Silakan coba lagi.
             </p>
           )}
