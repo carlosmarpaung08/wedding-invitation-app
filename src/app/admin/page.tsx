@@ -354,7 +354,7 @@ export default function AdminPage() {
                 {/* Preview URL */}
                 <p className="text-[10px] text-text-muted font-sans mb-4">
                   URL undangan:{" "}
-                  <span className="text-gold font-mono">
+                  <span className="text-gold font-mono break-all">
                     {SITE_URL}/?to={newGuest.slug || "..."}
                   </span>
                 </p>
@@ -404,10 +404,12 @@ export default function AdminPage() {
                           {g.slug}
                         </td>
                         <td className="py-3 pr-4">
-                          <div className="flex items-center gap-2">
-                            <span className="text-text-muted text-xs font-mono truncate max-w-[280px]">
-                              {SITE_URL}/?to={g.slug}
-                            </span>
+                          <div className="flex items-start sm:items-center gap-3">
+                            <div className="bg-black/20 border border-white/5 px-2.5 py-1.5 rounded min-w-[200px] max-w-[250px] sm:max-w-none">
+                              <span className="text-gold/90 text-xs font-mono break-all">
+                                {SITE_URL}/?to={g.slug}
+                              </span>
+                            </div>
                             <button
                               onClick={() => copyGuestUrl(g.slug)}
                               className="text-text-muted/40 hover:text-gold transition-colors flex-shrink-0"
